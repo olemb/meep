@@ -20,13 +20,17 @@ msg2 = NoteOff(60, ch=1))
 
 # There's no default backend for now.
 # You don't need to give the full name of the port.
-out = meep.rtmidi.open_output('minilogue')
+from meep.rtmidi import open_output
+out = open_output('minilogue')
 
 out.send(msg1)
 out.send(msg2)
 
+
 # Let's use the other backend here (requires ReceiveMIDI).
-inp = meep.sendmidi.open_input('microkey')
+from meep.sendmidi import open_input
+
+inp = open_input('microkey')
 for msg in inp:
     out.send(msg)
 ```
