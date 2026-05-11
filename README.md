@@ -26,7 +26,7 @@ out.send(msg1)
 out.send(msg2)
 
 # Let's use the other backend here (requires ReceiveMIDI).
-inp = meep.sendmidi.open_input'microkey')
+inp = meep.sendmidi.open_input('microkey')
 for msg in inp:
     out.send(msg)
 ```
@@ -35,9 +35,9 @@ All MIDI 1.0 message types are suppported:
 
 ```python
 >>> import meep
->>> import signature
+>>> import inspect
 >>> for cls in meep.messages.classes:
-... print(inpsect.signature(repr(cls)))
+... print(inspect.signature(repr(cls)))
 ```
 
 Differences from Mido:
@@ -57,7 +57,7 @@ Differences from Mido:
 * There is very little inheritance and most of the code is purely
   functional.
 
-* Channels are numbered 1-16. (Drum channel is finally at 10.)
+* Channels are numbered 1-16.
 
 * There are no MIDI files or sysex files.
 
