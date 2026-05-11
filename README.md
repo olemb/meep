@@ -63,9 +63,9 @@ for cls in meep.messages.classes:
 
 Differences from Mido:
 
-* Messages are implemented as one @dataclass per messsage type.  This
-  is much simpler and cleaner than doing it all in one `Message`
-  class.  (See `meep/messages.py`.)
+* Messages are implemented as one @dataclass per messsage type. (See
+  `meep/messages.py`.) This is much simpler and cleaner than doing it
+  all in one `Message` class.
 
 * Messages are always immutable (like frozen in Mido terms). The always
   should have been. It makes no sense to change the value of a message.
