@@ -33,12 +33,33 @@ for msg in inp:
 
 All MIDI 1.0 message types are suppported:
 
-```python
->>> import meep
->>> import inspect
->>> for cls in meep.messages.classes:
-... print(inspect.signature(repr(cls)))
+```Python
+NoteOff(note=0, velocity=64, ch=1)
+NoteOn(note=0, velocity=64, ch=1)
+PolyPressure(note=0, value=0, ch=1)
+ControlChange(number=0, value=0, ch=1)
+ProgramChange(number=0, ch=1)
+ChannelPressure(value=0, ch=1)
+PitchBend(value=8192, ch=1)
+SystemExclusive(data=b'')
+TimeCode(frame_type=0, frame_value=0)
+SongPosition(beats=0)
+SongSelect(number=0)
+TuneRequest()
+MidiClock()
+Start()
+Continue()
+Stop()
+ActiveSensing()
+Reset()
+
+# Created with:
+import meep
+for cls in meep.messages.classes:
+    # Create a new object.
+    print(repr(cls()))
 ```
+
 
 Differences from Mido:
 
