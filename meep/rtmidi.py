@@ -60,6 +60,15 @@ class Input:
             else:
                 yield from_bytes(msg[0])
 
+    def set_callback(self, callback, data=None):
+        if callback is None:
+            self.rt.set_callback(None)
+        else:
+            def wrapper(msg_bytes, data):
+                callback(from_bytes(msg_bytes[0]), data)
+                
+            self.rt.set_callback(wrapper, data)
+
 
 class Output:
     def __init__(self, name, create=False):
