@@ -115,30 +115,37 @@ class SongSelect(MidiMsg):
 
 @dataclass(frozen=True, eq=True)
 class TuneRequest(MidiMsg):
+    pass
 
 
 @dataclass(frozen=True, eq=True)
 class MidiClock(MidiMsg):
-
+    pass
+ 
 
 @dataclass(frozen=True, eq=True)
 class Start(MidiMsg):
+    pass
 
 
 @dataclass(frozen=True, eq=True)
 class Continue(MidiMsg):
+    pass
 
 
 @dataclass(frozen=True, eq=True)
 class Stop(MidiMsg):
+    pass
 
 
 @dataclass(frozen=True, eq=True)
 class ActiveSensing(MidiMsg):
+    pass
 
 
 @dataclass(frozen=True, eq=True)
 class Reset(MidiMsg):
+    pass
 
 
 classes = [
