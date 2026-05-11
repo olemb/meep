@@ -42,7 +42,6 @@ class NoteOff(MidiMsg):
     note: Integral = 0
     velocity: Integral = 64
     ch: Integral = 1
-    alias = 'off'
 
 
 @dataclass(frozen=True, eq=True)
@@ -50,7 +49,6 @@ class NoteOn(MidiMsg):
     note: Integral = 0
     velocity: Integral = 64
     ch: Integral = 1
-    alias = 'on'
 
 
 @dataclass(frozen=True, eq=True)
@@ -58,7 +56,6 @@ class PolyPressure(MidiMsg):
     note: Integral = 0
     value: Integral = 0
     ch: Integral = 1
-    alias = 'pp'
 
 
 @dataclass(frozen=True, eq=True)
@@ -66,21 +63,18 @@ class ControlChange(MidiMsg):
     number: Integral = 0
     value: Integral = 0
     ch: Integral = 1
-    alias = 'cc'
 
 
 @dataclass(frozen=True, eq=True)
 class ProgramChange(MidiMsg):
     number: Integral = 0
     ch: Integral = 1
-    alias = 'pc'
 
 
 @dataclass(frozen=True, eq=True)
 class ChannelPressure(MidiMsg):
     value: Integral = 0
     ch: Integral = 1
-    alias = 'cp'
 
 
 @dataclass(frozen=True, eq=True)
@@ -89,13 +83,11 @@ class PitchBend(MidiMsg):
     ch: Integral = 1
     mid = 8192
     max = 16383
-    alias = 'pb'
 
 
 @dataclass(frozen=True, eq=True)
 class SystemExclusive(MidiMsg):
     data: bytes = b''
-    alias = 'syx'
 
     def __post_init__(self):
         vars(self)['data'] = bytes(self.data)
@@ -108,55 +100,45 @@ class SystemExclusive(MidiMsg):
 class TimeCode(MidiMsg):
     frame_type: Integral = 0
     frame_value: Integral = 0
-    alias = 'tc'
 
 
 @dataclass(frozen=True, eq=True)
 class SongPosition(MidiMsg):
     beats: Integral = 0
     max = 16383
-    alias = 'spp'
 
 
 @dataclass(frozen=True, eq=True)
 class SongSelect(MidiMsg):
     number: Integral = 0
-    alias = 'ss'
 
 
 @dataclass(frozen=True, eq=True)
 class TuneRequest(MidiMsg):
-    alias = 'tun'
 
 
 @dataclass(frozen=True, eq=True)
 class MidiClock(MidiMsg):
-    alias = 'mc'
 
 
 @dataclass(frozen=True, eq=True)
 class Start(MidiMsg):
-    alias = 'start'
 
 
 @dataclass(frozen=True, eq=True)
 class Continue(MidiMsg):
-    alias = 'cont'
 
 
 @dataclass(frozen=True, eq=True)
 class Stop(MidiMsg):
-    alias = 'stop'
 
 
 @dataclass(frozen=True, eq=True)
 class ActiveSensing(MidiMsg):
-    alias = 'as'
 
 
 @dataclass(frozen=True, eq=True)
 class Reset(MidiMsg):
-    alias = 'rst'
 
 
 classes = [
@@ -184,14 +166,10 @@ classes = [
 def get_class(name):
     # TODO: add a lookup table.
     for cls in classes:
-        if name in [cls.__name__, cls.alias]:
+        if cls.__name__ == name:
             return cls
     else:
         raise ValueError(f'unknown MIDI message {name!r}')
-
-
-def new(name, *args, **kwargs):
-    return get_class(name)(*args, **kwargs)
 
 
 __all__ = [_.__name__ for _ in classes]
