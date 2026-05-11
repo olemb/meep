@@ -1,5 +1,5 @@
-from livemidi.rtmidi import open_input, open_output
-from livemidi import ProgramChange
+from meep.rtmidi import open_input, open_output
+from meep import ProgramChange
 
 gmsynth = open_output('GM')
 
